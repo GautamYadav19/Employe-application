@@ -1,0 +1,48 @@
+<div class="container">
+  <p *ngIf="employees.length <= 0" class="no-data text-center">
+    There is no employee added yet!
+  </p>
+  <table *ngIf="employees.length > 0" class="table table-bordered">
+    <thead class="table-success">
+      <tr>
+        <th scope="col">Employee Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Job title</th>
+        <th scope="col">Manger Name</th>
+        <th scope="col">HireDate</th>
+        <th scope="col">Salary</th>
+        <th scope="col center">Comission</th>
+        <th scope="col center">Department</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees; let i = index">
+        <th scope="row">{{ employee.empid }}</th>
+        <td>{{ employee.ename }}</td>
+        <td>{{ employee.job_title }}</td>
+        <td>{{ employee.MgrName }}</td>
+        <td>{{ employee.hiredate | date }}</td>
+        <td>{{ employee.salary ? employee.salary + "&#x20b9;" : "" }}</td>
+        <td>
+          {{ employee.comission ? employee.comission + "&#x20b9;" : "" }}
+        </td>
+        <td>{{ employee.dname }}</td>
+        <td class="text-center edit-block">
+          <span
+            style="padding: 5px"
+            class="edit"
+            [routerLink]="'/employee/edit/' + employee.empid"
+          >
+            <button type="button" class="btn btn-success btn-sm">Edit</button>
+          </span>
+          <span class="delete" (click)="removeEmployee(employee, i)"
+            ><button type="button" class="btn btn-danger btn-sm">
+              Delete
+            </button></span
+          >
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

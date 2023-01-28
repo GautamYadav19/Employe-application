@@ -1,0 +1,61 @@
+<div class="container">
+  <form class="row g-3" [formGroup]="employeeForm" (submit)="onSubmit()">
+    <div class="col-md-6">
+      <label class="form-label">Name</label>
+      <input type="text" class="form-control" formControlName="ename" />
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Jobid</label>
+      <select class="form-control" formControlName="jobid">
+        <option *ngFor="let job of jobs" value="{{ job.job_id }}">
+          {{ job.job_title }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">manger Id</label>
+      <select class="form-control" formControlName="mgrid">
+        <option *ngFor="let mgr of mgrs" value="{{ mgr.empid }}">
+          {{ mgr.ename }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">hiredate</label>
+      <input type="date" class="form-control" formControlName="hiredate" />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Salary</label>
+      <input
+        type="number"
+        class="form-control"
+        id="inputCity"
+        formControlName="salary"
+      />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">comission</label>
+      <input type="number" class="form-control" formControlName="comission" />
+    </div>
+
+    <div class="col-md-6">
+      <label class="form-label">Departments </label>
+      <select class="form-control" formControlName="deptid">
+        <option
+          *ngFor="let department of departments"
+          value="{{ department.deptid }}"
+        >
+          {{ department.dname }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">ADD</button>
+    </div>
+  </form>
+</div>
