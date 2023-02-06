@@ -1,6 +1,9 @@
 <div class="container-fluid">
   <div class="row d-flex justify-content-center">
     <div class="card mt-5">
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
       <h3>Login</h3>
       <form #myform="ngForm" (ngSubmit)="onSubmit(myform)">
         <div class="row">

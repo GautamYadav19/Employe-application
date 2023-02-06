@@ -83,7 +83,7 @@ export class EmployeeEditComponent implements OnInit {
       let id = this.actRoute.snapshot.paramMap.get('empid'); //mere Q yeh hain ki yeh empid kiyo le raha hain mai toh id pass kar raha hu
       this.apiService.updateEmployee(id, this.editForm.value).subscribe({
         complete: () => {
-          this.router.navigateByUrl('/employee-list');
+          this.router.navigateByUrl('/employees');
           console.log('Content update successfully!');
         },
         error: (e) => {

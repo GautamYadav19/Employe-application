@@ -1,5 +1,6 @@
 const mysql = require("mysql");
 const jwt = require("jsonwebtoken");
+const { throwError } = require("rxjs");
 
 const pool = mysql.createPool({
   host: "localhost",
@@ -23,7 +24,23 @@ rootdb.login = (username, password) => {
           return reject(err);
         } else if (!results.length) {
           console.log("else if  ", results);
-          return resolve({ status: 0, data: [] });
+          pool.query(
+            `select count(1) from users where username =?`,
+            [username],
+            (err, result) => {
+              if (err) {
+                return reject({ status: 0, data: err });
+              }
+              return resolve({
+                status: 0,
+                data: ["Incorrect_password"],
+              });
+            }
+          );
+          return resolve({
+            status: 0,
+            data: ["No_user_exist"],
+          });
         } else {
           console.log("hey ", results);
           let token = jwt.sign({ data: results }, "secret");

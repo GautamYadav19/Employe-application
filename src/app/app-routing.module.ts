@@ -17,7 +17,7 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuardService],
     children: [
-      { path: 'employees', component: EmployeeListComponent, children: [] },
+      { path: 'employees', component: EmployeeListComponent },
       { path: 'employee/edit/:id', component: EmployeeEditComponent },
       { path: 'employee/add', component: EmployeeCreateComponent },
       { path: 'departments', component: DepartmentListComponent },
